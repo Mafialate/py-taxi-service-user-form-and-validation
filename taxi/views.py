@@ -110,7 +110,11 @@ class DriverListView(LoginRequiredMixin, ListView):
 
 class DriverDetailView(LoginRequiredMixin, DetailView):
     model = get_user_model()
-    queryset = get_user_model().objects.all().prefetch_related("cars__manufacturer")
+    queryset = (
+        get_user_model()
+        .objects.all()
+        .prefetch_related("cars__manufacturer")
+    )
 
 
 class DriverCreateView(LoginRequiredMixin, CreateView):
